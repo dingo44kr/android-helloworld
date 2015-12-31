@@ -1,0 +1,65 @@
+<head>
+	<meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        <meta name="format-detection" content="telephone=no" charset="UTF-8">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<div id= "head"></div>
+<div id="content">
+
+</div>
+
+
+
+
+<script type="text/javascript">
+	$(function() {
+		ticket.booking();
+	});
+	
+	var ticket = {
+    		booking : function(){
+    			$.getJSON("http://fkod51.cafe24.com/movie/movie_info",function(data){
+    				alert('겟제이슨 진입');
+    				var temp = '<ul data-role="listview">';
+    				$.each(data.movieList, function(index, value){
+    					var fI = {
+    							fn : value.filmName,
+    							di : value.director,
+    							ac : value.actor,
+    							gen : value.genre,
+    							run : value.runtime,
+    							pri : value.price
+    					};
+    					temp +='<li><a onclick="ticket.result(fI)" href="#">'+value.filmName+'</a></li>';
+    				});
+    				temp += '</ul>';
+    				
+    				
+    				$('#head').html(
+    				'<meta http-equiv="Content-Type" content="default-src "self" data: gap: https://ssl.gstatic.com "unsafe-eval"; style-src "self" "unsafe-inline"; media-src *">'
+    		        +'<meta name="format-detection" content="telephone=no" charset="UTF-8">'
+    		        +'<meta name="msapplication-tap-highlight" content="no">'
+    		        +'<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">'
+    				+'<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"></link>'
+    		        +'<script src="http://code.jquery.com/jquery-1.11.1.min.js"/>'
+    		        +'<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"/>');
+    				$('#content').html(temp);
+    			});
+    		},
+
+    	 	result : function(fI){
+    			alert("영화제목:"+fI.fn);
+    		}
+   		};
+	
+	
+	
+	
+	
+</script>
